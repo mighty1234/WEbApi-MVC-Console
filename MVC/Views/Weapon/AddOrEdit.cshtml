@@ -1,0 +1,76 @@
+﻿@model MVC.Models.MVCWEaponModel
+@{
+    ViewBag.Title = "AddOrEdit";
+}
+
+<div class="form-body">
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.Id)
+
+  
+        <div class="form-group">
+            @Html.LabelFor(model => model.Material)
+            @Html.EditorFor(model => model.Material)
+            @Html.ValidationMessageFor(model => model.Material)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Trunk)
+            @Html.EditorFor(model => model.Trunk)
+            @Html.ValidationMessageFor(model => model.Trunk)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Type)
+            @Html.EditorFor(model => model.Type)
+            @Html.ValidationMessageFor(model => model.Type)
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Magazine_Size)
+            @Html.EditorFor(model => model.Magazine_Size)
+            @Html.ValidationMessageFor(model => model.Magazine_Size)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Country)
+            @Html.EditorFor(model => model.Country)
+            @Html.ValidationMessageFor(model => model.Country)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.pikatini)
+            @Html.EditorFor(model => model.pikatini)
+            @Html.ValidationMessageFor(model => model.pikatini)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Bulpup)
+            @Html.EditorFor(model => model.Bulpup)
+            @Html.ValidationMessageFor(model => model.Bulpup)
+        </div>
+
+
+      
+
+
+
+        <div class="form-control-static">
+            <input type="submit" value="Submit" class="btn button" />
+            <input type="reset" value="Reset" class="btn button" />
+
+        </div>
+    }
+
+
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundle/jqueryval");
+}
+
+
+
+

@@ -4,39 +4,43 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+  
+    <a href="@Url.Action("AddOrEdit","Weapon")" class="btn btn-default"><i class="fa fa-plus"></i>Create new</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Trunk)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Caliber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Material)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.pikatini)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Bulpup)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Magazine_Size)
-        </th>
-        <th></th>
-    </tr>
+<table class="table table-striped">
+
+    <thead class="table-heading">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Trunk)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Caliber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Material)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pikatini)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bulpup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Magazine_Size)
+            </th>
+            <th>Acrions </th>
+        </tr>
+    </thead>
 
 @foreach (var item in Model) {
     <tr>
@@ -65,11 +69,33 @@
             @Html.DisplayFor(modelItem => item.Magazine_Size)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            <a href="@Url.Action("AddOrEdit","Weapon", new  {id=item.Id  })" class="btn btn-default"><i class="fa fa-pencil"></i>Edit</a>
+            <a onclick="Delete(@item.Id)" class="btn btn-default"><i class="fa fa-trash"></i>Delete</a>
+            <a href="@Url.Action("AddOrEdit","Weapon", new  {id=item.Id  })" class="btn btn-default"><i class="fa fa-pencil"></i>Edit</a>
+
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
 }
 
 </table>
+
+@section scripts{
+    <script>
+
+        function() {
+            var successMessage = '@TempData["SuccessMessage"]'
+            if (successMesage != '')
+                alertify.success(successMessage);
+        }
+
+        function Delete(id) {
+            alertify.confirm("WEb APi CRUD Operation", "Are sure to detele this? ", function () {
+                window.location.href = '@Url.Action("Delete","Weapon")/' + id;
+            }, null
+            );
+                )
+        }
+    </script>
+    }
